@@ -4,7 +4,6 @@ from os import getenv
 from flask_assets import Bundle, Environment
 
 
-
 def build_app():
 
     app = Flask(__name__)
