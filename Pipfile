@@ -18,6 +18,7 @@ jinja2 = "*"
 requests = "*"
 flask-assets = "*"
 
+
 [dev-packages]
 
 [requires]

@@ -4,6 +4,7 @@ from os import getenv
 from flask_assets import Bundle, Environment
 
 
+
 def build_app():
 
     app = Flask(__name__)
@@ -45,13 +46,13 @@ def build_app():
         description = "It's a work in progress"
         DB.create_all()
         return render_template('index.html')
-        # return render_template(
-        #    'home.html', title=title, description=description)
+
 
     @app.route('/reset')
     def reset():
         DB.drop_all()
         DB.create_all()
         return 'Database has been reset'
+
 
     return app
