@@ -36,14 +36,17 @@
         <!-- Section -->
         <section id="first">
             <header>
-                <h2>Magna sed nullam nisl adipiscing</h2>
+                <h2>User Input here</h2>
             </header>
             <div class="content">
-                <p><strong>Lorem ipsum dolor</strong> sit amet consectetur adipiscing elit. Duis dapibus rutrum
-                    facilisis. Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos
-                    himenaeos. Etiam tristique libero eu nibh porttitor amet fermentum. Nullam venenatis erat id
-                    vehicula ultrices sed ultricies condimentum. Magna sed etiam consequat, et lorem adipiscing sed
-                    nulla. Volutpat nisl et tempus et dolor libero, feugiat magna tempus, sed et lorem adipiscing.</p>
+                <p><strong>Tell us your favorite song!</strong></p>
+                <form>
+                    <input type="text" name="user_input" placeholder="song and artist" />
+                    </br>
+                    <div class="actions">
+                        <input type="submit" value="sumbit" class="button primary" /></li>
+                    </div>
+                </form>
                 <span class="image main"><img src="{{url_for('static', filename='pic02.jpg')}}" alt="" /></span>
             </div>
         </section>
@@ -51,11 +54,14 @@
         <!-- Section -->
         <section>
             <header>
-                <h2>Feugiat consequat tempus ultrices</h2>
+                <h2>Recommendation and Visualizations</h2>
             </header>
             <div class="content">
-                <p><strong>Etiam tristique libero</strong> eu nibh porttitor amet fermentum. Nullam venenatis erat id
-                    vehicula ultrices sed ultricies condimentum.</p>
+                <p><strong></strong>Here is our recommendation. Take a listen!<strong></p>
+                <iframe style="border-radius:12px"
+                    src="https://open.spotify.com/embed/track/0pQskrTITgmCMyr85tb9qq?utm_source=generator" width="100%"
+                    height="380" frameBorder="0" allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
                 <!-- This code is adding feature icons, which are not necessary for the app
                 <ul class="feature-icons">
                     <li class="icon solid fa-laptop">Consequat tempus</li>
@@ -66,8 +72,7 @@
                     <li class="icon solid fa-code">Nibh amet venenatis</li>
                 </ul>
                 -->
-                <p>Vehicula ultrices sed ultricies condimentum. Magna sed etiam consequat, et lorem adipiscing sed
-                    nulla. Volutpat nisl et tempus et dolor libero, feugiat magna tempus, sed et lorem adipiscing.</p>
+                <p>The End</p>
             </div>
         </section>
 
