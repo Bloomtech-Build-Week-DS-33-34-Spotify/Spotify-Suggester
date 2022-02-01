@@ -16,6 +16,8 @@ spotipy = "*"
 python-dotenv = "*"
 jinja2 = "*"
 requests = "*"
+flask-assets = "*"
+
 
 [dev-packages]
 
