@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, request
 from flask_sqlalchemy import SQLAlchemy
 from os import getenv
 from flask_assets import Bundle, Environment
@@ -46,12 +46,16 @@ def build_app():
         DB.create_all()
         return render_template('index.html')
 
+    @app.route('/rec', methods=['POST'])
+    def recommend():
+        user_input = request.values['text_input']
+        # do data science here
+        return render_template('rec.html')
 
     @app.route('/reset')
     def reset():
         DB.drop_all()
         DB.create_all()
         return 'Database has been reset'
-
 
     return app
