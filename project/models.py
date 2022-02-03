@@ -5,7 +5,7 @@ from .mongodb import tracks_features
 
 def get_rec_tracks(user_track_id, user_track_features):
     '''
-    Takes a list of track features and returns the recommended song in tuple
+    Takes a list of track features and returns n=5 recommended tracks
     '''
     user_vector = np.array(user_track_features)
 
