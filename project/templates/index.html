@@ -41,10 +41,11 @@
             <div class="content">
                 <p><strong>Tell us your favorite song!</strong></p>
                 <form action='/rec' method="post">
-                    <input type="text" name="text_input" placeholder="song and artist" />
+                    <input type="text" name="text_input" placeholder="track name by artist" />
                     <br>
                     <input type="submit" value="sumbit" class="button primary" />
                 </form>
+                <p>{{message}}</p>
                 <span class="image main"><img src="{{url_for('static', filename='pic02.jpg')}}" alt="" /></span>
             </div>
         </section>
