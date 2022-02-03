@@ -1,14 +1,15 @@
 import numpy as np
 import pandas as pd
+from .mongodb import tracks_features
 
 
-def get_rec_track(user_track_id, user_track_features):
+def get_rec_tracks(user_track_id, user_track_features):
     '''
     Takes a list of track features and returns the recommended song in tuple
     '''
     user_vector = np.array(user_track_features)
 
-    df = pd.read_csv("project/static/tracks_features.csv")
+    df = pd.DataFrame(list(tracks_features.find()))
 
     feature_columns = ['danceability', 'energy', 'key', 'loudness',	'mode',
                        'speechiness', 'acousticness', 'instrumentalness', 'liveness',
@@ -27,21 +28,22 @@ def get_rec_track(user_track_id, user_track_features):
 
     df['similarity'] = cos_sims
 
-    df_final = df[['id', 'name', 'album', 'artists', 'artist_ids',
-                   'similarity']].sort_values(by='similarity', ascending=False).reset_index()
+    df_final = df[['id', 'name', 'artists',
+                   'similarity']].sort_values(by='similarity', ascending=False).reset_index(drop=True)
+
+    df_final.drop(columns='similarity', inplace=True)
 
     if user_track_id in df_final.id.values:
-        rec_track_id = df_final.loc[1]['id']
-        rec_track_name = df_final.loc[1]['name']
-        rec_track_artist = df_final.loc[1]['artists']
+        rec_tracks = df_final.loc[1:5].reset_index(drop=True)
     else:
-        rec_track_id = df_final.loc[0]['id']
-        rec_track_name = df_final.loc[0]['name']
-        rec_track_artist = df_final.loc[0]['artists']
+        rec_tracks = df_final.loc[:4]
 
-    char_to_remove = ["'", '"', "[", "]"]
+    def format_artist(artist_str):
+        char_to_remove = ["'", '"', "[", "]"]
+        for char in char_to_remove:
+            artist_str = artist_str.replace(char, "")
+        return artist_str
 
-    for char in char_to_remove:
-        rec_track_artist = rec_track_artist.replace(char, "")
+    rec_tracks['artists'] = rec_tracks['artists'].apply(format_artist)
 
-    return (rec_track_name, rec_track_artist, rec_track_id)
+    return rec_tracks

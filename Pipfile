@@ -13,6 +13,8 @@ flask-assets = "*"
 gunicorn = "*"
 pandas = "*"
 numpy = "*"
+flask-pymongo = "*"
+pymongo = {extras = ["srv"], version = "*"}
 
 [dev-packages]
 
