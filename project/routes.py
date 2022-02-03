@@ -3,7 +3,7 @@ from flask import Flask, render_template, request
 from os import getenv
 from flask_assets import Bundle, Environment
 from .api import get_track_features
-from .models import get_rec_track
+from .models import get_rec_tracks
 
 
 def build_app():
@@ -44,9 +44,33 @@ def build_app():
             (user_track_name, user_track_artist, user_track_id,
              user_track_features) = get_track_features(user_text)
 
-            (rec_track_name, rec_track_artist, rec_track_id) = get_rec_track(
-                user_track_id, user_track_features)
+            rec_tracks = get_rec_tracks(user_track_id, user_track_features)
+
+            rt1_id = rec_tracks.loc[0]['id']
+            rt1_name = rec_tracks.loc[0]['name']
+            rt1_artist = rec_tracks.loc[0]['artists']
+
+            rt2_id = rec_tracks.loc[1]['id']
+            rt2_name = rec_tracks.loc[1]['name']
+            rt2_artist = rec_tracks.loc[1]['artists']
+
+            rt3_id = rec_tracks.loc[2]['id']
+            rt3_name = rec_tracks.loc[2]['name']
+            rt3_artist = rec_tracks.loc[2]['artists']
+
+            rt4_id = rec_tracks.loc[3]['id']
+            rt4_name = rec_tracks.loc[3]['name']
+            rt4_artist = rec_tracks.loc[3]['artists']
+
+            rt5_id = rec_tracks.loc[4]['id']
+            rt5_name = rec_tracks.loc[4]['name']
+            rt5_artist = rec_tracks.loc[4]['artists']
+
             return render_template('rec.html', user_track=user_track_name, user_artist=user_track_artist,
-                                   rec_track=rec_track_name, rec_artist=rec_track_artist)
+                                   rt1=rt1_name, ra1=rt1_artist,
+                                   rt2=rt2_name, ra2=rt2_artist,
+                                   rt3=rt3_name, ra3=rt3_artist,
+                                   rt4=rt4_name, ra4=rt4_artist,
+                                   rt5=rt5_name, ra5=rt5_artist)
 
     return app
