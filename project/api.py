@@ -29,8 +29,12 @@ def get_track_features(user_text):
     user_artist = user_artist.replace(" ", "%")
 
     # GET request to get the track id given song and artist
-    track_response = requests.get(
-        f"https://api.spotify.com/v1/search?query=track:{user_track}+artist:{user_artist}&type=track&limit=1", headers=headers).json()
+    try:
+        track_response = requests.get(
+            f"https://api.spotify.com/v1/search?query=track:{user_track}+artist:{user_artist}&type=track&limit=1", headers=headers).json()
+    except Exception as e:
+        print(e)
+        raise e
 
     user_track_id = track_response['tracks']['items'][0]['id']
     user_track_name = track_response['tracks']['items'][0]['name']
