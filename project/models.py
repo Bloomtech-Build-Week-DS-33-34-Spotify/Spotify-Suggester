@@ -5,7 +5,7 @@ from .mongodb import tracks_features
 
 def get_rec_tracks(user_track_id, user_track_features, user_year):
     '''
-    Takes a list of track features and returns n=5 recommended tracks
+    Takes a list of track features and returns n=5 recommended tracks in a dataframe
     '''
     user_vector = np.array(user_track_features)
 
@@ -28,10 +28,8 @@ def get_rec_tracks(user_track_id, user_track_features, user_year):
 
     df['similarity'] = cos_sims
 
-    df_final = df[['id', 'name', 'artists',
-                   'similarity']].sort_values(by='similarity', ascending=False).reset_index(drop=True)
-
-    df_final.drop(columns='similarity', inplace=True)
+    df_final = df.sort_values(
+        by='similarity', ascending=False).reset_index(drop=True)
 
     if user_track_id in df_final.id.values:
         rec_tracks = df_final.loc[1:5].reset_index(drop=True)
@@ -47,3 +45,14 @@ def get_rec_tracks(user_track_id, user_track_features, user_year):
     rec_tracks['artists'] = rec_tracks['artists'].apply(format_artist)
 
     return rec_tracks
+
+
+def format_user_track_features(user_track_features):
+    '''
+    convert single track features from list to dataframe
+    '''
+    audio_features = ['danceability', 'energy', 'key', 'loudness', 'mode', 'speechiness', 'acousticness',
+                      'instrumentalness', 'liveness', 'valence', 'tempo', 'time_signature']
+    df_user_track = pd.DataFrame(
+        data=[user_track_features], columns=audio_features)
+    return df_user_track

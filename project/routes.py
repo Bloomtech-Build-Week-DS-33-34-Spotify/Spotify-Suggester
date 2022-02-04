@@ -2,7 +2,7 @@ from flask import Flask, render_template, request
 from os import getenv
 from flask_assets import Bundle, Environment
 from .api import get_track_features
-from .models import get_rec_tracks
+from .models import get_rec_tracks, format_user_track_features
 
 
 def build_app():
@@ -67,11 +67,159 @@ def build_app():
             rt5_name = rec_tracks.loc[4]['name']
             rt5_artist = rec_tracks.loc[4]['artists']
 
+            # Graphs
+            df_user_track = format_user_track_features(user_track_features)
+
+            data1 = []
+            data1.append(
+                (user_track_name, df_user_track['danceability'][0]))
+            for i in range(len(rec_tracks)):
+                tup = (rec_tracks.loc[i]['name'],
+                       rec_tracks.loc[i]['danceability'])
+                data1.append(tup)
+            legend1 = "danceability"
+            labels1 = [row[0] for row in data1]
+            values1 = [float(row[1]) for row in data1]
+
+            data2 = []
+            data2.append(
+                (user_track_name, df_user_track['energy'][0]))
+            for i in range(len(rec_tracks)):
+                tup = (rec_tracks.loc[i]['name'],
+                       rec_tracks.loc[i]['energy'])
+                data2.append(tup)
+            legend2 = "energy"
+            labels2 = [row[0] for row in data2]
+            values2 = [float(row[1]) for row in data2]
+
+            data3 = []
+            data3.append(
+                (user_track_name, df_user_track['key'][0]))
+            for i in range(len(rec_tracks)):
+                tup = (rec_tracks.loc[i]['name'],
+                       rec_tracks.loc[i]['key'])
+                data3.append(tup)
+            legend3 = "key"
+            labels3 = [row[0] for row in data3]
+            values3 = [float(row[1]) for row in data3]
+
+            data4 = []
+            data4.append(
+                (user_track_name, df_user_track['loudness'][0]))
+            for i in range(len(rec_tracks)):
+                tup = (rec_tracks.loc[i]['name'],
+                       rec_tracks.loc[i]['loudness'])
+                data4.append(tup)
+            legend4 = "loudness"
+            labels4 = [row[0] for row in data4]
+            values4 = [float(row[1]) for row in data4]
+
+            data5 = []
+            data5.append(
+                (user_track_name, df_user_track['mode'][0]))
+            for i in range(len(rec_tracks)):
+                tup = (rec_tracks.loc[i]['name'],
+                       rec_tracks.loc[i]['mode'])
+                data5.append(tup)
+            legend5 = "mode"
+            labels5 = [row[0] for row in data5]
+            values5 = [float(row[1]) for row in data5]
+
+            data6 = []
+            data6.append(
+                (user_track_name, df_user_track['speechiness'][0]))
+            for i in range(len(rec_tracks)):
+                tup = (rec_tracks.loc[i]['name'],
+                       rec_tracks.loc[i]['speechiness'])
+                data6.append(tup)
+            legend6 = "speechiness"
+            labels6 = [row[0] for row in data6]
+            values6 = [float(row[1]) for row in data6]
+
+            data7 = []
+            data7.append(
+                (user_track_name, df_user_track['acousticness'][0]))
+            for i in range(len(rec_tracks)):
+                tup = (rec_tracks.loc[i]['name'],
+                       rec_tracks.loc[i]['acousticness'])
+                data7.append(tup)
+            legend7 = "acousticness"
+            labels7 = [row[0] for row in data7]
+            values7 = [float(row[1]) for row in data7]
+
+            data8 = []
+            data8.append(
+                (user_track_name, df_user_track['instrumentalness'][0]))
+            for i in range(len(rec_tracks)):
+                tup = (rec_tracks.loc[i]['name'],
+                       rec_tracks.loc[i]['instrumentalness'])
+                data8.append(tup)
+            legend8 = "instrumentalness"
+            labels8 = [row[0] for row in data8]
+            values8 = [float(row[1]) for row in data8]
+
+            data9 = []
+            data9.append(
+                (user_track_name, df_user_track['liveness'][0]))
+            for i in range(len(rec_tracks)):
+                tup = (rec_tracks.loc[i]['name'],
+                       rec_tracks.loc[i]['liveness'])
+                data9.append(tup)
+            legend9 = "liveness"
+            labels9 = [row[0] for row in data9]
+            values9 = [float(row[1]) for row in data9]
+
+            data10 = []
+            data10.append(
+                (user_track_name, df_user_track['valence'][0]))
+            for i in range(len(rec_tracks)):
+                tup = (rec_tracks.loc[i]['name'],
+                       rec_tracks.loc[i]['valence'])
+                data10.append(tup)
+            legend10 = "valence"
+            labels10 = [row[0] for row in data10]
+            values10 = [float(row[1]) for row in data10]
+
+            data11 = []
+            data11.append(
+                (user_track_name, df_user_track['tempo'][0]))
+            for i in range(len(rec_tracks)):
+                tup = (rec_tracks.loc[i]['name'],
+                       rec_tracks.loc[i]['tempo'])
+                data11.append(tup)
+            legend11 = "tempo"
+            labels11 = [row[0] for row in data11]
+            values11 = [float(row[1]) for row in data11]
+
+            data12 = []
+            data12.append(
+                (user_track_name, df_user_track['time_signature'][0]))
+            for i in range(len(rec_tracks)):
+                tup = (rec_tracks.loc[i]['name'],
+                       rec_tracks.loc[i]['time_signature'])
+                data12.append(tup)
+            legend12 = "time_signature"
+            labels12 = [row[0] for row in data12]
+            values12 = [float(row[1]) for row in data12]
+
             return render_template('rec.html', user_track=user_track_name, user_artist=user_track_artist, user_year=str(user_year),
                                    rt1=rt1_name, ra1=rt1_artist,
                                    rt2=rt2_name, ra2=rt2_artist,
                                    rt3=rt3_name, ra3=rt3_artist,
                                    rt4=rt4_name, ra4=rt4_artist,
-                                   rt5=rt5_name, ra5=rt5_artist)
+                                   rt5=rt5_name, ra5=rt5_artist,
+                                   labels1=labels1, values1=values1, legend1=legend1,
+                                   labels2=labels2, values2=values2, legend2=legend2,
+                                   labels3=labels3, values3=values3, legend3=legend3,
+                                   labels4=labels4, values4=values4, legend4=legend4,
+                                   labels5=labels5, values5=values5, legend5=legend5,
+                                   labels6=labels6, values6=values6, legend6=legend6,
+                                   labels7=labels7, values7=values7, legend7=legend7,
+                                   labels8=labels8, values8=values8, legend8=legend8,
+                                   labels9=labels9, values9=values9, legend9=legend9,
+                                   labels10=labels10, values10=values10, legend10=legend10,
+                                   labels11=labels11, values11=values11, legend11=legend11,
+                                   labels12=labels12, values12=values12, legend12=legend12
+                                   )
 
     return app
