@@ -22,7 +22,7 @@
         <section class="intro">
             <header>
                 <h1>Spotify Song Suggester</h1>
-                <p>Help users find and visualize songs that fit their personal taste.</p>
+                <p>To help you find new songs that fit your personal taste.</p>
                 <ul class="actions">
                     <li><a href="#first" class="arrow scrolly"><span class="label">Next</span></a></li>
                 </ul>
@@ -36,16 +36,20 @@
         <!-- Section -->
         <section id="first">
             <header>
-                <h2>User Input here</h2>
+                <h2>Give it a try!</h2>
             </header>
             <div class="content">
-                <p><strong>Tell us your favorite song!</strong></p>
+                <p><strong>{{message}}</strong></p>
                 <form action='/rec' method="post">
+                    <p><strong>Tell us your favorite song!</strong></p>
                     <input type="text" name="text_input" placeholder="track name by artist" />
+                    <br>
+                    <p><strong>Select a year of music (1950-2020)</strong></p>
+                    <input type="number" name="year_input" min="1950" max="2020" placeholder="2020">
+                    <br>
                     <br>
                     <input type="submit" value="sumbit" class="button primary" />
                 </form>
-                <p>{{message}}</p>
                 <span class="image main"><img src="{{url_for('static', filename='pic02.jpg')}}" alt="" /></span>
             </div>
         </section>

@@ -1,5 +1,4 @@
 from flask import Flask, render_template, request
-#from flask_sqlalchemy import SQLAlchemy
 from os import getenv
 from flask_assets import Bundle, Environment
 from .api import get_track_features
@@ -37,14 +36,16 @@ def build_app():
     @app.route('/rec', methods=['POST'])
     def recommend():
         user_text = request.values['text_input']
+        user_year = int(request.values['year_input'])
         if "by" not in user_text:
-            message = "make sure to include the artist!"
+            message = "Make sure to include the artist!"
             return render_template('index.html', message=message)
         else:
             (user_track_name, user_track_artist, user_track_id,
              user_track_features) = get_track_features(user_text)
 
-            rec_tracks = get_rec_tracks(user_track_id, user_track_features)
+            rec_tracks = get_rec_tracks(
+                user_track_id, user_track_features, user_year)
 
             rt1_id = rec_tracks.loc[0]['id']
             rt1_name = rec_tracks.loc[0]['name']
@@ -66,7 +67,7 @@ def build_app():
             rt5_name = rec_tracks.loc[4]['name']
             rt5_artist = rec_tracks.loc[4]['artists']
 
-            return render_template('rec.html', user_track=user_track_name, user_artist=user_track_artist,
+            return render_template('rec.html', user_track=user_track_name, user_artist=user_track_artist, user_year=str(user_year),
                                    rt1=rt1_name, ra1=rt1_artist,
                                    rt2=rt2_name, ra2=rt2_artist,
                                    rt3=rt3_name, ra3=rt3_artist,

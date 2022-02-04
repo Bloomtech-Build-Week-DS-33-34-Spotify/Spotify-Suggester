@@ -3,13 +3,13 @@ import pandas as pd
 from .mongodb import tracks_features
 
 
-def get_rec_tracks(user_track_id, user_track_features):
+def get_rec_tracks(user_track_id, user_track_features, user_year):
     '''
     Takes a list of track features and returns n=5 recommended tracks
     '''
     user_vector = np.array(user_track_features)
 
-    df = pd.DataFrame(list(tracks_features.find()))
+    df = pd.DataFrame(list(tracks_features.find({'year': str(user_year)})))
 
     feature_columns = ['danceability', 'energy', 'key', 'loudness',	'mode',
                        'speechiness', 'acousticness', 'instrumentalness', 'liveness',
