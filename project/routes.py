@@ -9,6 +9,9 @@ def build_app():
 
     app = Flask(__name__)
 
+    app.logger.addHandler(logging.StreamHandler(sys.stdout))
+    app.logger.setLevel(logging.ERROR)
+
     # To use the provided javascript and css template
     js = Bundle('breakpoints.min.js', 'browser.min.js',
                 'jquery.min.js', 'jquery.scrolly.min.js', 'main.js',
