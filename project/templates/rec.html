@@ -21,7 +21,7 @@
         <!-- Section -->
         <section class="intro">
             <header>
-                <h2>Thanks for waiting!</h2>
+                <h1>Recs</h1>
             </header>
             <div class="content">
                 <br>
@@ -43,7 +43,13 @@
                 <br>
                 <br>
                 <br>
-                <p>Visualize your song data below!</p>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <br>
+                <p><strong>Compare audio features for all the songs below!</strong></p>
                 <ul class="actions">
                     <li><a href="#first" class="arrow scrolly"><span class="label">Next</span></a></li>
                 </ul>
@@ -53,11 +59,720 @@
         <!-- Visulizations Section -->
         <section id="first">
             <header>
-                <h2>Visualizations</h2>
+                <h1>Visuals</h1>
             </header>
-            <div class="content">
-                <span class="image main"><img src="{{url_for('static', filename='pic02.jpg')}}" alt="" /></span>
-            </div>
+
+            <body>
+                <div class="split right">
+                    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.5.0/Chart.min.js"></script>
+                    <canvas id="myChart1" width="800" height="400" style="padding: 0em 4em;"></canvas>
+                    <script>
+                        // Global parameters:
+                        // do not resize the chart canvas when its container does (keep at 600x400px)
+                        Chart.defaults.global.responsive = false;
+                        // define the chart data
+                        var chartData = {
+                            labels: [{% for item in labels1 %}
+                        "{{item}}",
+                            {% endfor %}],
+                        datasets: [{
+                            label: '{{ legend1 }}',
+                            fill: true,
+                            lineTension: 0.1,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: "rgba(75,192,192,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: [{% for item in values1 %}
+             {{ item }},
+                        {% endfor %}],
+                            spanGaps: false
+            }]}
+                        // get chart canvas
+                        var ctx = document.getElementById("myChart1").getContext("2d");
+
+                        // create the chart using the chart canvas
+                        var myChart1 = new Chart(ctx, {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            display: false
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+
+
+                    <canvas id="myChart2" width="800" height="400" style="padding: 0em 4em;"></canvas>
+                    <script>
+                        // Global parameters:
+                        // do not resize the chart canvas when its container does (keep at 600x400px)
+                        Chart.defaults.global.responsive = false;
+                        // define the chart data
+                        var chartData = {
+                            labels: [{% for item in labels2 %}
+                        "{{item}}",
+                            {% endfor %}],
+                        datasets: [{
+                            label: '{{ legend2 }}',
+                            fill: true,
+                            lineTension: 0.1,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: "rgba(75,192,192,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: [{% for item in values2 %}
+{{ item }},
+                        {% endfor %}],
+                            spanGaps: false
+}]}
+                        // get chart canvas
+                        var ctx = document.getElementById("myChart2").getContext("2d");
+
+                        // create the chart using the chart canvas
+                        var myChart2 = new Chart(ctx, {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            display: false
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+
+                    <canvas id="myChart3" width="800" height="400" style="padding: 0em 4em;"></canvas>
+                    <script>
+                        // Global parameters:
+                        // do not resize the chart canvas when its container does (keep at 600x400px)
+                        Chart.defaults.global.responsive = false;
+                        // define the chart data
+                        var chartData = {
+                            labels: [{% for item in labels3 %}
+                        "{{item}}",
+                            {% endfor %}],
+                        datasets: [{
+                            label: '{{ legend3 }}',
+                            fill: true,
+                            lineTension: 0.1,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: "rgba(75,192,192,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: [{% for item in values3 %}
+             {{ item }},
+                        {% endfor %}],
+                            spanGaps: false
+            }]}
+                        // get chart canvas
+                        var ctx = document.getElementById("myChart3").getContext("2d");
+
+                        // create the chart using the chart canvas
+                        var myChart3 = new Chart(ctx, {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            display: false
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+
+
+                    <canvas id="myChart4" width="800" height="400" style="padding: 0em 4em;"></canvas>
+                    <script>
+                        // Global parameters:
+                        // do not resize the chart canvas when its container does (keep at 600x400px)
+                        Chart.defaults.global.responsive = false;
+                        // define the chart data
+                        var chartData = {
+                            labels: [{% for item in labels4 %}
+                        "{{item}}",
+                            {% endfor %}],
+                        datasets: [{
+                            label: '{{ legend4 }}',
+                            fill: true,
+                            lineTension: 0.1,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: "rgba(75,192,192,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: [{% for item in values4 %}
+{{ item }},
+                        {% endfor %}],
+                            spanGaps: false
+}]}
+                        // get chart canvas
+                        var ctx = document.getElementById("myChart4").getContext("2d");
+
+                        // create the chart using the chart canvas
+                        var myChart4 = new Chart(ctx, {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            display: false
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+
+
+                    <canvas id="myChart5" width="800" height="400" style="padding: 0em 4em;"></canvas>
+                    <script>
+                        // Global parameters:
+                        // do not resize the chart canvas when its container does (keep at 600x400px)
+                        Chart.defaults.global.responsive = false;
+                        // define the chart data
+                        var chartData = {
+                            labels: [{% for item in labels5 %}
+                        "{{item}}",
+                            {% endfor %}],
+                        datasets: [{
+                            label: '{{ legend5 }}',
+                            fill: true,
+                            lineTension: 0.1,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: "rgba(75,192,192,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: [{% for item in values5 %}
+{{ item }},
+                        {% endfor %}],
+                            spanGaps: false
+}]}
+                        // get chart canvas
+                        var ctx = document.getElementById("myChart5").getContext("2d");
+
+                        // create the chart using the chart canvas
+                        var myChart5 = new Chart(ctx, {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            display: false
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+
+                    <canvas id="myChart6" width="800" height="400" style="padding: 0em 4em;"></canvas>
+                    <script>
+                        // Global parameters:
+                        // do not resize the chart canvas when its container does (keep at 600x400px)
+                        Chart.defaults.global.responsive = false;
+                        // define the chart data
+                        var chartData = {
+                            labels: [{% for item in labels6 %}
+                        "{{item}}",
+                            {% endfor %}],
+                        datasets: [{
+                            label: '{{ legend6 }}',
+                            fill: true,
+                            lineTension: 0.1,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: "rgba(75,192,192,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: [{% for item in values6 %}
+{{ item }},
+                        {% endfor %}],
+                            spanGaps: false
+}]}
+                        // get chart canvas
+                        var ctx = document.getElementById("myChart6").getContext("2d");
+
+                        // create the chart using the chart canvas
+                        var myChart6 = new Chart(ctx, {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            display: false
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+
+
+                    <canvas id="myChart7" width="800" height="400" style="padding: 0em 4em;"></canvas>
+                    <script>
+                        // Global parameters:
+                        // do not resize the chart canvas when its container does (keep at 600x400px)
+                        Chart.defaults.global.responsive = false;
+                        // define the chart data
+                        var chartData = {
+                            labels: [{% for item in labels7 %}
+                        "{{item}}",
+                            {% endfor %}],
+                        datasets: [{
+                            label: '{{ legend7 }}',
+                            fill: true,
+                            lineTension: 0.1,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: "rgba(75,192,192,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: [{% for item in values7 %}
+{{ item }},
+                        {% endfor %}],
+                            spanGaps: false
+}]}
+                        // get chart canvas
+                        var ctx = document.getElementById("myChart7").getContext("2d");
+
+                        // create the chart using the chart canvas
+                        var myChart7 = new Chart(ctx, {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            display: false
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+
+
+                    <canvas id="myChart8" width="800" height="400" style="padding: 0em 4em;"></canvas>
+                    <script>
+                        // Global parameters:
+                        // do not resize the chart canvas when its container does (keep at 600x400px)
+                        Chart.defaults.global.responsive = false;
+                        // define the chart data
+                        var chartData = {
+                            labels: [{% for item in labels8 %}
+                        "{{item}}",
+                            {% endfor %}],
+                        datasets: [{
+                            label: '{{ legend8 }}',
+                            fill: true,
+                            lineTension: 0.1,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: "rgba(75,192,192,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: [{% for item in values8 %}
+{{ item }},
+                        {% endfor %}],
+                            spanGaps: false
+}]}
+                        // get chart canvas
+                        var ctx = document.getElementById("myChart8").getContext("2d");
+
+                        // create the chart using the chart canvas
+                        var myChart8 = new Chart(ctx, {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            display: false
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+
+
+                    <canvas id="myChart9" width="800" height="400" style="padding: 0em 4em;"></canvas>
+                    <script>
+                        // Global parameters:
+                        // do not resize the chart canvas when its container does (keep at 600x400px)
+                        Chart.defaults.global.responsive = false;
+                        // define the chart data
+                        var chartData = {
+                            labels: [{% for item in labels9 %}
+                        "{{item}}",
+                            {% endfor %}],
+                        datasets: [{
+                            label: '{{ legend9 }}',
+                            fill: true,
+                            lineTension: 0.1,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: "rgba(75,192,192,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: [{% for item in values9 %}
+{{ item }},
+                        {% endfor %}],
+                            spanGaps: false
+}]}
+                        // get chart canvas
+                        var ctx = document.getElementById("myChart9").getContext("2d");
+
+                        // create the chart using the chart canvas
+                        var myChart9 = new Chart(ctx, {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            display: false
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+
+
+                    <canvas id="myChart10" width="800" height="400" style="padding: 0em 4em;"></canvas>
+                    <script>
+                        // Global parameters:
+                        // do not resize the chart canvas when its container does (keep at 600x400px)
+                        Chart.defaults.global.responsive = false;
+                        // define the chart data
+                        var chartData = {
+                            labels: [{% for item in labels10 %}
+                        "{{item}}",
+                            {% endfor %}],
+                        datasets: [{
+                            label: '{{ legend10 }}',
+                            fill: true,
+                            lineTension: 0.1,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: "rgba(75,192,192,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: [{% for item in values10 %}
+{{ item }},
+                        {% endfor %}],
+                            spanGaps: false
+}]}
+                        // get chart canvas
+                        var ctx = document.getElementById("myChart10").getContext("2d");
+
+                        // create the chart using the chart canvas
+                        var myChart10 = new Chart(ctx, {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            display: false
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+
+
+                    <canvas id="myChart11" width="800" height="400" style="padding: 0em 4em;"></canvas>
+                    <script>
+                        // Global parameters:
+                        // do not resize the chart canvas when its container does (keep at 600x400px)
+                        Chart.defaults.global.responsive = false;
+                        // define the chart data
+                        var chartData = {
+                            labels: [{% for item in labels11 %}
+                        "{{item}}",
+                            {% endfor %}],
+                        datasets: [{
+                            label: '{{ legend11 }}',
+                            fill: true,
+                            lineTension: 0.1,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: "rgba(75,192,192,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: [{% for item in values11 %}
+             {{ item }},
+                        {% endfor %}],
+                            spanGaps: false
+            }]}
+                        // get chart canvas
+                        var ctx = document.getElementById("myChart11").getContext("2d");
+
+                        // create the chart using the chart canvas
+                        var myChart11 = new Chart(ctx, {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            display: false
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+
+
+                    <canvas id="myChart12" width="800" height="400" style="padding: 0em 4em;"></canvas>
+                    <script>
+                        // Global parameters:
+                        // do not resize the chart canvas when its container does (keep at 600x400px)
+                        Chart.defaults.global.responsive = false;
+                        // define the chart data
+                        var chartData = {
+                            labels: [{% for item in labels12 %}
+                        "{{item}}",
+                            {% endfor %}],
+                        datasets: [{
+                            label: '{{ legend12 }}',
+                            fill: true,
+                            lineTension: 0.1,
+                            backgroundColor: "rgba(75,192,192,0.4)",
+                            borderColor: "rgba(75,192,192,1)",
+                            borderCapStyle: 'butt',
+                            borderDash: [],
+                            borderDashOffset: 0.0,
+                            borderJoinStyle: 'miter',
+                            pointBorderColor: "rgba(75,192,192,1)",
+                            pointBackgroundColor: "#fff",
+                            pointBorderWidth: 1,
+                            pointHoverRadius: 5,
+                            pointHoverBackgroundColor: "rgba(75,192,192,1)",
+                            pointHoverBorderColor: "rgba(220,220,220,1)",
+                            pointHoverBorderWidth: 2,
+                            pointRadius: 1,
+                            pointHitRadius: 10,
+                            data: [{% for item in values12 %}
+             {{ item }},
+                        {% endfor %}],
+                            spanGaps: false
+            }]}
+                        // get chart canvas
+                        var ctx = document.getElementById("myChart12").getContext("2d");
+
+                        // create the chart using the chart canvas
+                        var myChart12 = new Chart(ctx, {
+                            type: 'bar',
+                            data: chartData,
+                            options: {
+                                scales: {
+                                    yAxes: [{
+                                        ticks: {
+                                            beginAtZero: true
+                                        }
+                                    }],
+                                    xAxes: [{
+                                        ticks: {
+                                            display: false
+                                        }
+                                    }]
+                                }
+                            }
+                        });
+                    </script>
+
+                </div>
+            </body>
+
         </section>
 
 
