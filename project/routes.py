@@ -3,6 +3,8 @@ from os import getenv
 from flask_assets import Bundle, Environment
 from .api import get_track_features
 from .models import get_rec_tracks, format_user_track_features
+import sys
+import logging
 
 
 def build_app():
