@@ -26,23 +26,47 @@
             <div class="content">
                 <br>
                 <p>If you like {{user_track}} by {{user_artist}}, we recommend the following songs from {{user_year}}
-                    with similar audio features:</p>
-                <p style="margin-left:10%"> {{rt1}} by {{ra1}}</p>
-                <p style="margin-left:10%"> {{rt2}} by {{ra2}}</p>
-                <p style="margin-left:10%"> {{rt3}} by {{ra3}}</p>
-                <p style="margin-left:10%"> {{rt4}} by {{ra4}}</p>
-                <p style="margin-left:10%"> {{rt5}} by {{ra5}}</p>
-                <!--
-                <p>Take a listen!</p>
-                <iframe style="border-radius:12px"
-                    src="https://open.spotify.com/embed/track/0pQskrTITgmCMyr85tb9qq?utm_source=generator" width="100%"
-                    height="80" frameBorder="0" allowfullscreen=""
-                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture">
-                </iframe>
-                -->
-                <br>
-                <br>
-                <br>
+                    with similar audio features. Take a listen!</p>
+                <!--<p style="margin-left:10%"> {{rt1}} by {{ra1}}</p>-->
+                <iframe id="myIframe1" style="border-radius:12px" src="" width="100%" height="80" frameBorder="0"
+                    allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                <script>
+                    document.getElementById("myIframe1").src =
+                        "https://open.spotify.com/embed/track/" + '{{ rid1 }}' + "?utm_source=generator"
+                </script>
+                <!--<p style="margin-left:10%"> {{rt2}} by {{ra2}}</p>-->
+                <iframe id="myIframe2" style="border-radius:12px" src="" width="100%" height="80" frameBorder="0"
+                    allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                <script>
+                    document.getElementById("myIframe2").src =
+                        "https://open.spotify.com/embed/track/" + '{{ rid2 }}' + "?utm_source=generator"
+                </script>
+                <!--<p style="margin-left:10%"> {{rt3}} by {{ra3}}</p>-->
+                <iframe id="myIframe3" style="border-radius:12px" src="" width="100%" height="80" frameBorder="0"
+                    allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                <script>
+                    document.getElementById("myIframe3").src =
+                        "https://open.spotify.com/embed/track/" + '{{ rid3 }}' + "?utm_source=generator"
+                </script>
+                <!--<p style="margin-left:10%"> {{rt4}} by {{ra4}}</p>-->
+                <iframe id="myIframe4" style="border-radius:12px" src="" width="100%" height="80" frameBorder="0"
+                    allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                <script>
+                    document.getElementById("myIframe4").src =
+                        "https://open.spotify.com/embed/track/" + '{{ rid4 }}' + "?utm_source=generator"
+                </script>
+                <!-- <p style="margin-left:10%"> {{rt5}} by {{ra5}}</p>-->
+                <iframe id="myIframe5" style="border-radius:12px" src="" width="100%" height="80" frameBorder="0"
+                    allowfullscreen=""
+                    allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"></iframe>
+                <script>
+                    document.getElementById("myIframe5").src =
+                        "https://open.spotify.com/embed/track/" + '{{ rid5 }}' + "?utm_source=generator"
+                </script>
                 <br>
                 <br>
                 <br>

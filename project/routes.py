@@ -211,11 +211,11 @@ def build_app():
             values12 = [float(row[1]) for row in data12]
 
             return render_template('rec.html', user_track=user_track_name, user_artist=user_track_artist, user_year=str(user_year),
-                                   rt1=rt1_name, ra1=rt1_artist,
-                                   rt2=rt2_name, ra2=rt2_artist,
-                                   rt3=rt3_name, ra3=rt3_artist,
-                                   rt4=rt4_name, ra4=rt4_artist,
-                                   rt5=rt5_name, ra5=rt5_artist,
+                                   rt1=rt1_name, ra1=rt1_artist, rid1=rt1_id,
+                                   rt2=rt2_name, ra2=rt2_artist, rid2=rt2_id,
+                                   rt3=rt3_name, ra3=rt3_artist, rid3=rt3_id,
+                                   rt4=rt4_name, ra4=rt4_artist, rid4=rt4_id,
+                                   rt5=rt5_name, ra5=rt5_artist, rid5=rt5_id,
                                    labels1=labels1, values1=values1, legend1=legend1,
                                    labels2=labels2, values2=values2, legend2=legend2,
                                    labels3=labels3, values3=values3, legend3=legend3,
