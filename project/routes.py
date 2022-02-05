@@ -3,16 +3,11 @@ from os import getenv
 from flask_assets import Bundle, Environment
 from .api import get_track_features
 from .models import get_rec_tracks, format_user_track_features
-import sys
-import logging
 
 
 def build_app():
 
     app = Flask(__name__)
-
-    app.logger.addHandler(logging.StreamHandler(sys.stdout))
-    app.logger.setLevel(logging.ERROR)
 
     # To use the provided javascript and css template
     js = Bundle('breakpoints.min.js', 'browser.min.js',
@@ -42,15 +37,23 @@ def build_app():
     def recommend():
         user_text = request.values['text_input']
         user_year = int(request.values['year_input'])
-        if "by" not in user_text:
+        if " by " not in user_text:
             message = "Make sure to include the artist!"
             return render_template('index.html', message=message)
         else:
-            (user_track_name, user_track_artist, user_track_id,
-             user_track_features) = get_track_features(user_text)
+            try:
+                (user_track_name, user_track_artist, user_track_id,
+                 user_track_features) = get_track_features(user_text)
+            except:
+                message = "That didn't work. Try again!"
+                return render_template('index.html', message=message)
 
-            rec_tracks = get_rec_tracks(
-                user_track_id, user_track_features, user_year)
+            try:
+                rec_tracks = get_rec_tracks(
+                    user_track_id, user_track_features, user_year)
+            except:
+                message = "That didn't work. Try again!"
+                return render_template('index.html', message=message)
 
             rt1_id = rec_tracks.loc[0]['id']
             rt1_name = rec_tracks.loc[0]['name']
