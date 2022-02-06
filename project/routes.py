@@ -52,7 +52,7 @@ def build_app():
                 rec_tracks = get_rec_tracks(
                     user_track_id, user_track_features, user_year)
             except:
-                message = "That didn't work. Try again!"
+                message = "There is something wrong. Come try again at a later time."
                 return render_template('index.html', message=message)
 
             rt1_id = rec_tracks.loc[0]['id']
