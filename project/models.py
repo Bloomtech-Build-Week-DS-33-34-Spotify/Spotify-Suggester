@@ -7,7 +7,7 @@ def get_rec_tracks(user_track_id, user_track_features, user_year):
     '''
     Takes a list of track features and returns n=5 recommended tracks in a dataframe
     '''
-    user_vector = np.array(user_track_features)
+    user_vector = np.array(user_track_features, dtype=float)
 
     df = pd.DataFrame(list(tracks_features.find({'year': str(user_year)})))
 
@@ -16,12 +16,24 @@ def get_rec_tracks(user_track_id, user_track_features, user_year):
                        'valence', 'tempo', 'time_signature']
     df_X = df[feature_columns]
 
+    # Normalizing the features to be on similar scale
+    means = []
+    sq_means = []
+    for feature in feature_columns:
+        means.append(df_X[feature].mean())
+        df_X[feature] = df_X[feature] - df_X[feature].mean()
+        sq_means.append(np.sqrt((df_X[feature]**2).mean()))
+        df_X[feature] = df_X[feature] / np.sqrt((df_X[feature]**2).mean())
+
+    for i in range(len(user_vector)):
+        user_vector[i] = user_vector[i] - means[i]
+        user_vector[i] = user_vector[i] / sq_means[i]
+
+    # Calculating cosine similarity for each row in tracks DF
     X_matrix = df_X.to_numpy()
-    #X_norm = preprocessing.normalize(X_matrix, norm='l2')
     cos_sims = []
-    #user_vector_norm = preprocessing.normalize(user_vector.reshape(1,-1), norm='l2')[0]
+
     for i in range(len(X_matrix)):
-        #cos_sim = cosine(user_song_norm, X_matrix[i])
         cos_sim = np.dot(
             user_vector, X_matrix[i])/(np.linalg.norm(user_vector)*np.linalg.norm(X_matrix[i]))
         cos_sims.append((cos_sim))
