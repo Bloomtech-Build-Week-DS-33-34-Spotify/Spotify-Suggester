@@ -41,19 +41,19 @@ def build_app():
             message = "Make sure to include the artist!"
             return render_template('index.html', message=message)
         else:
-            # try:
-            (user_track_name, user_track_artist, user_track_id,
-             user_track_features) = get_track_features(user_text)
-            # except:
-            # message = "That didn't work. Try again!"
-            # return render_template('index.html', message=message)
+            try:
+                (user_track_name, user_track_artist, user_track_id,
+                    user_track_features) = get_track_features(user_text)
+            except:
+                message = "That didn't work. Try again!"
+                return render_template('index.html', message=message)
 
-            # try:
-            rec_tracks = get_rec_tracks(
-                user_track_id, user_track_features, user_year)
-            # except:
-            # message = "There is something wrong. Come try again at a later time."
-            # return render_template('index.html', message=message)
+            try:
+                rec_tracks = get_rec_tracks(
+                    user_track_id, user_track_features, user_year)
+            except:
+                message = "There is something wrong. Come try again at a later time."
+                return render_template('index.html', message=message)
 
             rt1_id = rec_tracks.loc[0]['id']
             rt1_name = rec_tracks.loc[0]['name']

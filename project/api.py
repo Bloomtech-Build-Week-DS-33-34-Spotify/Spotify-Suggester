@@ -1,28 +1,28 @@
 import requests
 from os import getenv
 
-# Generate an access token
-# authetication URL
-AUTH_URL = 'https://accounts.spotify.com/api/token'
-# POST
-auth_response = requests.post(AUTH_URL, {
-    'grant_type': 'client_credentials',
-    'client_id': getenv('SPOTIFY_CLIENT_ID'),
-    'client_secret': getenv('SPOTIFY_CLIENT_SECRET'),
-})
-# convert the response to JSON
-auth_response_data = auth_response.json()
-# save the access token
-access_token = auth_response_data['access_token']
-
-# used for authenticating all API calls
-headers = {'Authorization': 'Bearer {token}'.format(token=access_token)}
-
 
 def get_track_features(user_text):
     '''
     Return track id and audio features of song in user text string
     '''
+    # Generate an access token (every time function is called)
+    # authetication URL
+    AUTH_URL = 'https://accounts.spotify.com/api/token'
+    # POST
+    auth_response = requests.post(AUTH_URL, {
+        'grant_type': 'client_credentials',
+        'client_id': getenv('SPOTIFY_CLIENT_ID'),
+        'client_secret': getenv('SPOTIFY_CLIENT_SECRET'),
+    })
+    # convert the response to JSON
+    auth_response_data = auth_response.json()
+    # save the access token
+    access_token = auth_response_data['access_token']
+
+    # used for authenticating all API calls
+    headers = {'Authorization': 'Bearer {token}'.format(token=access_token)}
+
     user_text = user_text.strip()
     user_track, user_artist = user_text.split(" by ")
     user_track = user_track.replace(" ", "%")
